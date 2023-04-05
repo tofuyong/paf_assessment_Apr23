@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +39,6 @@ public class TodoService {
         if (!user.isPresent()) {
             User newUser = new User();
             String userid = UUID.randomUUID().toString().substring(0, 8);
-            System.out.println(">>>>>> Generated userid: " + userid); // testing
             newUser.setName(username);
             newUser.setUserId(userid);
             newUser.setUsername(username);
@@ -59,6 +56,5 @@ public class TodoService {
             }
         }
     }
-
 }
 

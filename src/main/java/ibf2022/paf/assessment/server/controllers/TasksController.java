@@ -84,6 +84,7 @@ public class TasksController {
         logger.info(">>>> Username: " + username);
         logger.info(">>>> List of Tasks: " + tasks.toString());
 
+        // To return ModelAndView
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("result.html");
         modelAndView.setStatus(HttpStatus.OK);
@@ -93,6 +94,3 @@ public class TasksController {
         return modelAndView;
     }
 }
-
-
-

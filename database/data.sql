@@ -1,4 +1,4 @@
-use bgg;
+use railway;
 
 insert into user (user_id, username, name) values ('1b80114c', 'fred', 'Fred');
 insert into user (user_id, username, name) values ('cf66dae3', 'wilma', 'Wilma');

@@ -1,11 +1,12 @@
-CREATE SCHEMA `bgg`;
+CREATE SCHEMA `railway`;
 
-use bgg;
+use railway;
 
 create table user (
 	user_id varchar(8) not null,
     username varchar(100) not null,
-    name varchar(100)
+    name varchar(100),
+    constraint user_pk primary key(username)
 );
 
 create table task (
@@ -15,5 +16,5 @@ create table task (
     due_date date,
     username varchar(100),
     constraint task_pk primary key(task_id),
-    constraint task_fk foreign key (username) references user(username)
+    constraint task_fk foreign key(username) references user(username)
 );
