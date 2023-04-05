@@ -80,17 +80,22 @@ public class TasksController {
             task.setUsername(username);
         }
 
-        toDoSvc.upsertTask(tasks, username);
+        Boolean bUpserted = toDoSvc.upsertTask(tasks, username);
         logger.info(">>>> Username: " + username);
         logger.info(">>>> List of Tasks: " + tasks.toString());
 
         // To return ModelAndView
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("result.html");
-        modelAndView.setStatus(HttpStatus.OK);
-        modelAndView.addObject("username", username);
-        modelAndView.addObject("taskCount", taskCount);
-       
+        if (bUpserted) {
+            modelAndView.setViewName("result.html");
+            modelAndView.setStatus(HttpStatus.OK);
+            modelAndView.addObject("username", username);
+            modelAndView.addObject("taskCount", taskCount);
+        } else if (!bUpserted) {
+            modelAndView.setViewName("error.html");
+            modelAndView.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
         return modelAndView;
     }
 }

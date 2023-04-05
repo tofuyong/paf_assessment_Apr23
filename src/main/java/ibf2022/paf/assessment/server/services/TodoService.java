@@ -26,8 +26,9 @@ public class TodoService {
     UserRepository userRepo;
 
     @Transactional (rollbackFor = InsertTaskException.class)
-    public void upsertTask(List<Task> tasks, String username) throws InsertTaskException {
+    public Boolean upsertTask(List<Task> tasks, String username) throws InsertTaskException {
         Boolean bProceed = false; 
+        Boolean bUpserted = false;
 
         // 1. Check if user exists
         Optional<User> user = userRepo.getUserByUsername(username);
@@ -53,8 +54,12 @@ public class TodoService {
                 if (iInserted < 1) {
                     throw new InsertTaskException();
                 }
+                if (iInserted>0) {
+                    bUpserted = true;
+                }
             }
         }
+        return bUpserted;
     }
 }
 
